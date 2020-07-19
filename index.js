@@ -167,3 +167,12 @@ const addRoleQuestion = [
     },
 ];
 
+// Question to trigger add new department flow
+const addDepartmentQuestion = [
+    {
+        type: "input",
+        name: "newDepartment",
+        message: "Please enter the name of the new department.",
+        validate: validation,
+    },
+];
