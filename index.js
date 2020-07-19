@@ -167,7 +167,7 @@ const addRoleQuestion = [
     },
 ];
 
-// Question to trigger add new department flow
+// Question to trigger add new department path
 const addDepartmentQuestion = [
     {
         type: "input",
@@ -176,3 +176,6 @@ const addDepartmentQuestion = [
         validate: validation,
     },
 ];
+
+// Question to trigger update employee pathway
+const updateEmployeeRoleQuestion = [];
