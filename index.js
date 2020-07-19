@@ -178,4 +178,78 @@ const addDepartmentQuestion = [
 ];
 
 // Question to trigger update employee pathway
-const updateEmployeeRoleQuestion = [];
+const updateEmployeeRoleQuestion = [
+    {
+        type: "list",
+        name: "updateRole",
+        message: "Which role would you like to update?",
+        choices: async function () {
+            var employeeRole = [];
+            var promiseWrapper = function () {
+                return new Promise((resolve) => {
+                    connection.query(`SELECT role.title FROM role`, function (
+                        err,
+                        res,
+                        field
+                    ) {
+                        if (err) throw err;
+                        for (var i = 0; i < res.length; i++) {
+                            employeeRole.push(`${res[i].title}`);
+                        }
+                        resolve("resolved");
+                    });
+                });
+            };
+            await promiseWrapper();
+            return employeeRole;
+        },
+    },
+    {
+        type: "input",
+        name: "updateTitle",
+        message:
+            "Please enter new title for this role. If no change needed, enter current title.",
+        validate: validation,
+    },
+    {
+        type: "input",
+        name: "updateSalary",
+        message:
+            "Please enter new salary amount for this role. If no change needed, enter in current salary.",
+        validate: function (value) {
+            var salary = parseInt(value);
+            if (!salary || salary < 0) {
+                return "Please enter a valid salary amount.";
+            } else {
+                return true;
+            }
+        },
+    },
+    {
+        type: "list",
+        name: "updateDepartment",
+        message:
+            "Please select new department for this role. If no change needed, select current department.",
+        choices: async function () {
+            var departmentChocies = [];
+            var promiseWrapper = function () {
+                return new Promise((resolve) => {
+                    connection.query(`SELECT department.name FROM department`, function (
+                        err,
+                        res,
+                        field
+                    ) {
+                        if (err) throw err;
+                        for (var i = 0; i < res.length; i++) {
+                            departmentChocies.push(`${res[i].name}`);
+                        }
+                        resolve("resolved");
+                    });
+                });
+            };
+            await promiseWrapper();
+            return departmentChocies;
+        },
+    },
+];
+
