@@ -358,3 +358,15 @@ function addNewEmployeeRole() {
         var deptName = answers.roleDepartment;
         var salaryEntered = answers.salary;
         var titleEntered = answers.newRole;
+        // Extracting the department id for a given department title using async await
+        var promiseWrapper1 = function () {
+            return new Promise((resolve) => {
+                connection.query(
+                    `SELECT department.id FROM department WHERE department.name = '${deptName}';`,
+                    function (err, res, field) {
+                        if (err) throw err;
+                        resolve(res[0].id);
+                    }
+                );
+            });
+        };
