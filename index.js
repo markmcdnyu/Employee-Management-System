@@ -408,3 +408,20 @@ function updateEmployeeRole() {
             });
         };
         var roleID = await promiseWrapper1();
+
+        //NEED to pull out the department id for a certain department title
+        var promiseWrapper2 = function () {
+            return new Promise((resolve) => {
+                connection.query(
+                    `SELECT department.id FROM department WHERE department.name = '${selectedUpdateDepartment}';`,
+                    function (err, res, field) {
+                        if (err) throw err;
+                        resolve(res[0].id);
+                    }
+                );
+            });
+        };
+        var departmentID = await promiseWrapper2();
+
+        // NEED connection query that will update an employee role from a user's input 
+        connection.query
