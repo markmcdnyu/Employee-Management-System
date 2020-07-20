@@ -459,8 +459,5 @@ function answerChoices(answer) {
     }
 }
 
-
-
-
-
 // NEED the inquirer prompt to start the intro questions
+inquirer.prompt(introQuestion).then(answerChoices);
