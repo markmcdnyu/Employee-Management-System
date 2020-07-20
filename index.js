@@ -25,7 +25,7 @@ function validation(value) {
     if (value != "") {
         return true;
     } else {
-        return "Please answer the question.";
+        return "Please answer the question. Cannot leave this section blank.";
     }
 }
 
