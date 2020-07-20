@@ -370,3 +370,15 @@ function addNewEmployeeRole() {
                 );
             });
         };
+        var departmentID = await promiseWrapper1();
+        // connection query that will insert new employee role
+        connection.query(
+            `INSERT INTO role (title, salary, department_id) 
+			VALUES('${titleEntered}', ${salaryEntered}, ${departmentID});`,
+            function (err, res, field) {
+                if (err) throw err;
+                inquirer.prompt(introQuestion).then(answerChoices);
+            }
+        );
+    });
+}
