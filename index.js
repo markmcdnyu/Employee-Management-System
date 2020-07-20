@@ -424,4 +424,17 @@ function updateEmployeeRole() {
         var departmentID = await promiseWrapper2();
 
         // NEED connection query that will update an employee role from a user's input 
-        connection.query
+        connection.query(
+            `UPDATE role
+			SET role.title = '${selectedUpdateTitle}', role.salary = ${selectedUpdateSalary}, role.department_id = ${departmentID}
+			WHERE role.id = ${roleID};`,
+            function (err, res, field) {
+                if (err) throw err;
+                inquirer.prompt(introQuestion).then(answerChoices);
+            }
+        );
+    });
+}
+
+// NEED a function to trigger the logic based on a user's answer choices 
+// Should probably try a large if/else
