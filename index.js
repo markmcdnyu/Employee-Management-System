@@ -295,3 +295,17 @@ function addNewEmployee() {
         var lName = answers.lastName;
         var selectedRole = answers.employeeRole;
         var selectedManager = answers.employeeManager;
+        // Extracting the role id for a given role title using async await
+        var promiseWrapper1 = function () {
+            return new Promise((resolve) => {
+                connection.query(
+                    `SELECT role.id FROM role WHERE role.title = '${selectedRole}';`,
+                    function (err, res, field) {
+                        if (err) throw err;
+                        resolve(res[0].id);
+                    }
+                );
+            });
+        };
+        // roleId variable that will be applies when adding an employee
+        var roleId = await promiseWrapper1();
