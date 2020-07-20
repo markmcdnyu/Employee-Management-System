@@ -41,10 +41,18 @@ INSERT INTO department (name) values ('Sales');
 INSERT INTO department (name) values ('Legal');
 
 -- Insert the pre-populated role data for the role table
-INSERT INTO role (title, salary, department_id) values ('Accountant', 80000, 1);
-INSERT INTO role (title, salary, department_id) values ('Software Engineer', 100000, 2);
-INSERT INTO role (title, salary, department_id) values ('Account Executive', 50000, 3);
-INSERT INTO role (title, salary, department_id) values ('Lawyer', 110000, 4);
+INSERT INTO role (title, salary, department_id) values ('Accountant',80000,1);
+INSERT INTO role (title, salary, department_id) values ('Software Engineer',100000,2);
+INSERT INTO role (title, salary, department_id) values ('Account Executive',50000,3);
+INSERT INTO role (title, salary, department_id) values ('Lawyer',110000,4);
 
-
+-- Insert the pre-populated data for the employee table
+INSERT INTO employee (first_name, last_name, role_id) values ('John', 'Doe', 1);
+INSERT INTO employee (first_name, last_name, role_id) values ('Jane', 'Doe', 1);
+INSERT INTO employee (first_name, last_name, role_id) values ('Gabe', 'Lewis', 2);
+INSERT INTO employee (first_name, last_name, role_id) values ('Erin', 'Hannon', 2);
+INSERT INTO employee (first_name, last_name, role_id, manager_id) values ('Oscar', 'Nunez', 4, 1);
+INSERT INTO employee (first_name, last_name, role_id, manager_id) values ('Kevin', 'Malone', 4, 1);
+INSERT INTO employee (first_name, last_name, role_id, manager_id) values ('Jim', 'Halpert', 3, 2);
+INSERT INTO employee (first_name, last_name, role_id, manager_id) values ('Pam', 'Halpert', 3, 2);
 
