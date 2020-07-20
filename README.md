@@ -4,7 +4,7 @@ Developers are often tasked with creating interfaces that make it easy for non-d
 
 ## Instructions
 
-Designed the database schema to conatin the following three tables:
+Designed the database schema to contain the following three tables:
 
 ![Database Schema](Assets/schema.png)
 
