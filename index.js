@@ -269,3 +269,13 @@ function viewAllEmployees() {
         }
     );
 }
+
+// Function to view all departments
+function viewAllDepartments() {
+    connection.query("SELECT * FROM department;", function (err, res, field) {
+        if (err) throw err;
+        console.table(res);
+        inquirer.prompt(introQuestion).then(answerChoices);
+    });
+}
+
