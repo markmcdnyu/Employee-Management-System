@@ -34,7 +34,7 @@ const introQuestion = [
     {
         type: "list",
         name: "intro",
-        message: "What would you like to do?",
+        message: "Where would you like to begin?",
         choices: [
             "View all employees",
             "View all departments",
@@ -55,13 +55,13 @@ const addEmployeeQuestion = [
     {
         type: "input",
         name: "firstName",
-        message: "Please enter employee's first name.",
+        message: "Please enter the employee's first name.",
         validate: validation,
     },
     {
         type: "input",
         name: "lastName",
-        message: "Please enter employee's last name.",
+        message: "Please enter the employee's last name.",
         validate: validation,
     },
     {
@@ -72,11 +72,7 @@ const addEmployeeQuestion = [
             var employeeRole = [];
             var promiseWrapper = function () {
                 return new Promise((resolve) => {
-                    connection.query(`SELECT role.title FROM role`, function (
-                        err,
-                        res,
-                        field
-                    ) {
+                    connection.query(`SELECT role.title FROM role`, function (err, res, field) {
                         if (err) throw err;
                         for (var i = 0; i < res.length; i++) {
                             employeeRole.push(`${res[i].title}`);
@@ -135,11 +131,7 @@ const addRoleQuestion = [
             var departmentChocies = [];
             var promiseWrapper = function () {
                 return new Promise((resolve) => {
-                    connection.query(`SELECT department.name FROM department`, function (
-                        err,
-                        res,
-                        field
-                    ) {
+                    connection.query(`SELECT department.name FROM department`, function (err, res, field) {
                         if (err) throw err;
                         for (var i = 0; i < res.length; i++) {
                             departmentChocies.push(`${res[i].name}`);
@@ -187,11 +179,7 @@ const updateEmployeeRoleQuestion = [
             var employeeRole = [];
             var promiseWrapper = function () {
                 return new Promise((resolve) => {
-                    connection.query(`SELECT role.title FROM role`, function (
-                        err,
-                        res,
-                        field
-                    ) {
+                    connection.query(`SELECT role.title FROM role`, function (err, res, field) {
                         if (err) throw err;
                         for (var i = 0; i < res.length; i++) {
                             employeeRole.push(`${res[i].title}`);
@@ -234,11 +222,7 @@ const updateEmployeeRoleQuestion = [
             var departmentChocies = [];
             var promiseWrapper = function () {
                 return new Promise((resolve) => {
-                    connection.query(`SELECT department.name FROM department`, function (
-                        err,
-                        res,
-                        field
-                    ) {
+                    connection.query(`SELECT department.name FROM department`, function (err, res, field) {
                         if (err) throw err;
                         for (var i = 0; i < res.length; i++) {
                             departmentChocies.push(`${res[i].name}`);
