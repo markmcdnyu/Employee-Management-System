@@ -337,3 +337,6 @@ function addNewEmployee() {
         );
     });
 }
+
+// Function to add a new department
+function addNewDepartment() 
