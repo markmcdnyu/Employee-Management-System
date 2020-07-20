@@ -253,3 +253,19 @@ const updateEmployeeRoleQuestion = [
     },
 ];
 
+// Function to view all employees
+function viewAllEmployees() {
+    connection.query(
+        `SELECT employee.id, employee.first_name, employee.last_name, role.title,
+		department.name AS department,role.salary,CONCAT(a.first_name, " ", a.last_name) AS manager
+		FROM employee
+		LEFT JOIN role ON employee.role_id = role.id
+		LEFT JOIN department ON role.id = department.id
+		LEFT JOIN employee a ON a.id = employee.manager_id;`,
+        function (err, res, field) {
+            if (err) throw err;
+            console.table(res);
+            inquirer.prompt(introQuestion).then(answerChoices);
+        }
+    );
+}
