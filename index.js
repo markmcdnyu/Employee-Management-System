@@ -339,4 +339,8 @@ function addNewEmployee() {
 }
 
 // Function to add a new department
-function addNewDepartment() 
+function addNewDepartment() {
+    inquirer.prompt(addDepartmentQuestion).then(async function (answers) {
+
+    });
+}
