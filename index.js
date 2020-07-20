@@ -421,7 +421,8 @@ function updateEmployeeRole() {
 }
 
 // NEED a function to trigger the logic based on a user's answer choices 
-// Should probably try a large if/else
+// Will try a large if/else because the user is not inputting the answer choices by text, rather inquirer arrow keys
+
 function answerChoices(answer) {
     if (answer.intro === "View all employees") {
         viewAllEmployees();
