@@ -70,7 +70,7 @@ const addEmployeeQuestion = [
         message: "Please select the employee's role.",
         choices: async function () {
             var employeeRole = [];
-            var promiseWrapper = function () {
+            var promiseFunction = function () {
                 return new Promise((resolve) => {
                     connection.query(`SELECT role.title FROM role`, function (err, res, field) {
                         if (err) throw err;
@@ -81,7 +81,7 @@ const addEmployeeQuestion = [
                     });
                 });
             };
-            await promiseWrapper();
+            await promiseFunction();
             return employeeRole;
         },
     },
@@ -91,7 +91,7 @@ const addEmployeeQuestion = [
         message: "Please select the employee's manager.",
         choices: async function () {
             var employeeManager = [];
-            var promiseWrapper = function () {
+            var promiseFunction = function () {
                 return new Promise((resolve) => {
                     connection.query(
                         `SELECT
@@ -109,7 +109,7 @@ const addEmployeeQuestion = [
                     );
                 });
             };
-            await promiseWrapper();
+            await promiseFunction();
             return employeeManager;
         },
     },
@@ -129,7 +129,7 @@ const addRoleQuestion = [
         message: "Please select a department for this role.",
         choices: async function () {
             var departmentChocies = [];
-            var promiseWrapper = function () {
+            var promiseFunction = function () {
                 return new Promise((resolve) => {
                     connection.query(`SELECT department.name FROM department`, function (err, res, field) {
                         if (err) throw err;
@@ -140,7 +140,7 @@ const addRoleQuestion = [
                     });
                 });
             };
-            await promiseWrapper();
+            await promiseFunction();
             return departmentChocies;
         },
     },
@@ -177,7 +177,7 @@ const updateEmployeeRoleQuestion = [
         message: "Which role would you like to update?",
         choices: async function () {
             var employeeRole = [];
-            var promiseWrapper = function () {
+            var promiseFunction = function () {
                 return new Promise((resolve) => {
                     connection.query(`SELECT role.title FROM role`, function (err, res, field) {
                         if (err) throw err;
@@ -188,7 +188,7 @@ const updateEmployeeRoleQuestion = [
                     });
                 });
             };
-            await promiseWrapper();
+            await promiseFunction();
             return employeeRole;
         },
     },
@@ -220,7 +220,7 @@ const updateEmployeeRoleQuestion = [
             "Please select new department for this role. If no change needed, select current department.",
         choices: async function () {
             var departmentChocies = [];
-            var promiseWrapper = function () {
+            var promiseFunction = function () {
                 return new Promise((resolve) => {
                     connection.query(`SELECT department.name FROM department`, function (err, res, field) {
                         if (err) throw err;
@@ -231,7 +231,7 @@ const updateEmployeeRoleQuestion = [
                     });
                 });
             };
-            await promiseWrapper();
+            await promiseFunction();
             return departmentChocies;
         },
     },
@@ -281,7 +281,7 @@ function addNewEmployee() {
         var selectedManager = answers.employeeManager;
 
         //NEED to pull out the role id for a given role title using async await
-        var promiseWrapper1 = function () {
+        var promiseFunction1 = function () {
             return new Promise((resolve) => {
                 connection.query(
                     `SELECT role.id FROM role WHERE role.title = '${selectedRole}';`,
@@ -293,10 +293,10 @@ function addNewEmployee() {
             });
         };
         // NEED a roleId variable that will be applied when adding an employee
-        var roleId = await promiseWrapper1();
+        var roleId = await promiseFunction1();
 
         //NEED variable to pull out the manager id for a given manager
-        var promiseWrapper2 = function () {
+        var promiseFunction2 = function () {
             return new Promise((resolve) => {
                 connection.query(
                     `SELECT employee.id FROM employee
@@ -309,7 +309,7 @@ function addNewEmployee() {
             });
         };
         //NEED a managerId variable that will be applies when adding an employee
-        var managerId = await promiseWrapper2();
+        var managerId = await promiseFunction2();
 
         //NEED connection query to insert new employee input into employee table
         connection.query(
@@ -346,7 +346,7 @@ function addNewEmployeeRole() {
         var titleEntered = answers.newRole;
 
         //NEED to pull out the department id for a given department title using async await
-        var promiseWrapper1 = function () {
+        var promiseFunction1 = function () {
             return new Promise((resolve) => {
                 connection.query(
                     `SELECT department.id FROM department WHERE department.name = '${deptName}';`,
@@ -357,7 +357,7 @@ function addNewEmployeeRole() {
                 );
             });
         };
-        var departmentID = await promiseWrapper1();
+        var departmentID = await promiseFunction1();
 
         // NEED a connection query that will add new employee role
         connection.query(
@@ -380,7 +380,7 @@ function updateEmployeeRole() {
         var selectedUpdateDepartment = answers.updateDepartment;
 
         //NEED to pull out the role id for a given role title using async await
-        var promiseWrapper1 = function () {
+        var promiseFunction1 = function () {
             return new Promise((resolve) => {
                 connection.query(
                     `SELECT role.id FROM role WHERE role.title = '${selectedUpdateRole}';`,
@@ -391,10 +391,10 @@ function updateEmployeeRole() {
                 );
             });
         };
-        var roleID = await promiseWrapper1();
+        var roleID = await promiseFunction1();
 
         //NEED to pull out the department id for a certain department title
-        var promiseWrapper2 = function () {
+        var promiseFunction2 = function () {
             return new Promise((resolve) => {
                 connection.query(
                     `SELECT department.id FROM department WHERE department.name = '${selectedUpdateDepartment}';`,
@@ -405,7 +405,7 @@ function updateEmployeeRole() {
                 );
             });
         };
-        var departmentID = await promiseWrapper2();
+        var departmentID = await promiseFunction2();
 
         // NEED connection query that will update an employee role from a user's input 
         connection.query(
