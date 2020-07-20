@@ -394,3 +394,17 @@ function updateEmployeeRole() {
         var selectedUpdateTitle = answers.updateTitle;
         var selectedUpdateSalary = answers.updateSalary;
         var selectedUpdateDepartment = answers.updateDepartment;
+
+        //NEED to pull out the role id for a given role title using async await
+        var promiseWrapper1 = function () {
+            return new Promise((resolve) => {
+                connection.query(
+                    `SELECT role.id FROM role WHERE role.title = '${selectedUpdateRole}';`,
+                    function (err, res, field) {
+                        if (err) throw err;
+                        resolve(res[0].id);
+                    }
+                );
+            });
+        };
+        var roleID = await promiseWrapper1();
