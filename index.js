@@ -279,3 +279,11 @@ function viewAllDepartments() {
     });
 }
 
+// Function to view all roles
+function viewAllRoles() {
+    connection.query("SELECT * FROM role;", function (err, res, field) {
+        if (err) throw err;
+        console.table(res);
+        inquirer.prompt(introQuestion).then(answerChoices);
+    });
+}
