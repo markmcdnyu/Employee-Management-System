@@ -325,3 +325,15 @@ function addNewEmployee() {
         };
         // mangerId variable that will be applies when adding an employee
         var managerId = await promiseWrapper2();
+
+        // inserting new employee input into employee table
+        connection.query(
+            `INSERT INTO employee (first_name, last_name, role_id, manager_id) 
+			VALUES('${fName}', '${lName}', ${roleId}, ${managerId});`,
+            function (err, res, field) {
+                if (err) throw err;
+                inquirer.prompt(introQuestion).then(answerChoices);
+            }
+        );
+    });
+}
