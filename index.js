@@ -388,4 +388,9 @@ function addNewEmployeeRole() {
 }
 
 // NEED a function to update an existing employee role
-function updateEmployeeRole()
+function updateEmployeeRole() {
+    inquirer.prompt(updateEmployeeRoleQuestion).then(async function (answers) {
+        var selectedUpdateRole = answers.updateRole;
+        var selectedUpdateTitle = answers.updateTitle;
+        var selectedUpdateSalary = answers.updateSalary;
+        var selectedUpdateDepartment = answers.updateDepartment;
