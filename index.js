@@ -20,7 +20,7 @@ connection.connect(function (err) {
     if (err) throw err;
 });
 
-// Function to validate that the questions asked are answered
+//NEED to insert the validation function, so that questions aren't left unanswered
 function validation(value) {
     if (value != "") {
         return true;
@@ -29,7 +29,7 @@ function validation(value) {
     }
 }
 
-//Inquirer questions 
+//NEED to start with inquirer questions for inital opening of the application
 const introQuestion = [
     {
         type: "list",
@@ -50,7 +50,7 @@ const introQuestion = [
 ];
 
 
-// Question to trigger the add new employee flow
+// NEED question to fire the 'add new employee' pathway
 const addEmployeeQuestion = [
     {
         type: "input",
@@ -119,7 +119,7 @@ const addEmployeeQuestion = [
     },
 ];
 
-// Question to trigger add new role flow
+//NEED questions to fire to add new role pathway
 const addRoleQuestion = [
     {
         type: "input",
@@ -167,7 +167,7 @@ const addRoleQuestion = [
     },
 ];
 
-// Question to trigger add new department path
+//NEED questions to fire to add a new department path
 const addDepartmentQuestion = [
     {
         type: "input",
@@ -177,7 +177,7 @@ const addDepartmentQuestion = [
     },
 ];
 
-// Question to trigger update employee pathway
+//NEED questions to trigger and update for the employee pathway
 const updateEmployeeRoleQuestion = [
     {
         type: "list",
@@ -253,7 +253,7 @@ const updateEmployeeRoleQuestion = [
     },
 ];
 
-// Function to view all employees
+//NEED a function to view all employees
 function viewAllEmployees() {
     connection.query(
         `SELECT employee.id, employee.first_name, employee.last_name, role.title,
@@ -270,7 +270,7 @@ function viewAllEmployees() {
     );
 }
 
-// Function to view all departments
+// NEED a function to view all departments
 function viewAllDepartments() {
     connection.query("SELECT * FROM department;", function (err, res, field) {
         if (err) throw err;
@@ -279,7 +279,7 @@ function viewAllDepartments() {
     });
 }
 
-// Function to view all roles
+// NEED a function to view all roles
 function viewAllRoles() {
     connection.query("SELECT * FROM role;", function (err, res, field) {
         if (err) throw err;
@@ -288,14 +288,15 @@ function viewAllRoles() {
     });
 }
 
-// Function to add a new employee
+//NEED a function to add a new employee
 function addNewEmployee() {
     inquirer.prompt(addEmployeeQuestion).then(async function (answers) {
         var fName = answers.firstName;
         var lName = answers.lastName;
         var selectedRole = answers.employeeRole;
         var selectedManager = answers.employeeManager;
-        // Extracting the role id for a given role title using async await
+
+        //NEED to pull out the role id for a given role title using async await
         var promiseWrapper1 = function () {
             return new Promise((resolve) => {
                 connection.query(
@@ -307,10 +308,10 @@ function addNewEmployee() {
                 );
             });
         };
-        // roleId variable that will be applies when adding an employee
+        // NEED a roleId variable that will be applied when adding an employee
         var roleId = await promiseWrapper1();
 
-        // Extracting the manager id for a given manager
+        //NEED variable to pull out the manager id for a given manager
         var promiseWrapper2 = function () {
             return new Promise((resolve) => {
                 connection.query(
@@ -323,10 +324,10 @@ function addNewEmployee() {
                 );
             });
         };
-        // mangerId variable that will be applies when adding an employee
+        //NEED a managerId variable that will be applies when adding an employee
         var managerId = await promiseWrapper2();
 
-        // inserting new employee input into employee table
+        //NEED connection query to insert new employee input into employee table
         connection.query(
             `INSERT INTO employee (first_name, last_name, role_id, manager_id) 
 			VALUES('${fName}', '${lName}', ${roleId}, ${managerId});`,
@@ -338,10 +339,11 @@ function addNewEmployee() {
     });
 }
 
-// Function to add a new department
+// NEED a function to add a new department
 function addNewDepartment() {
     inquirer.prompt(addDepartmentQuestion).then(async function (answers) {
-        // inserting new department into the department table
+
+        //NEED connection query to insert new department into the department table
         connection.query(
             `INSERT INTO department (name) VALUES('${answers.newDepartment}');`,
             function (err, res, field) {
@@ -352,13 +354,14 @@ function addNewDepartment() {
     });
 }
 
-// Function to add a new employee role
+//NEED a function to add a new employee role
 function addNewEmployeeRole() {
     inquirer.prompt(addRoleQuestion).then(async function (answers) {
         var deptName = answers.roleDepartment;
         var salaryEntered = answers.salary;
         var titleEntered = answers.newRole;
-        // Extracting the department id for a given department title using async await
+
+        //NEED to pull out the department id for a given department title using async await
         var promiseWrapper1 = function () {
             return new Promise((resolve) => {
                 connection.query(
@@ -371,7 +374,8 @@ function addNewEmployeeRole() {
             });
         };
         var departmentID = await promiseWrapper1();
-        // connection query that will insert new employee role
+
+        // NEED a connection query that will add new employee role
         connection.query(
             `INSERT INTO role (title, salary, department_id) 
 			VALUES('${titleEntered}', ${salaryEntered}, ${departmentID});`,
@@ -382,3 +386,6 @@ function addNewEmployeeRole() {
         );
     });
 }
+
+// NEED a function to update an existing employee role
+function updateEmployeeRole()
