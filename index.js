@@ -287,3 +287,11 @@ function viewAllRoles() {
         inquirer.prompt(introQuestion).then(answerChoices);
     });
 }
+
+// Function to add a new employee
+function addNewEmployee() {
+    inquirer.prompt(addEmployeeQuestion).then(async function (answers) {
+        var fName = answers.firstName;
+        var lName = answers.lastName;
+        var selectedRole = answers.employeeRole;
+        var selectedManager = answers.employeeManager;
