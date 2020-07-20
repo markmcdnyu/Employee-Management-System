@@ -438,3 +438,29 @@ function updateEmployeeRole() {
 
 // NEED a function to trigger the logic based on a user's answer choices 
 // Should probably try a large if/else
+function answerChoices(answer) {
+    if (answer.intro === "View all employees") {
+        viewAllEmployees();
+    } else if (answer.intro === "View all departments") {
+        viewAllDepartments();
+    } else if (answer.intro === "View all roles") {
+        viewAllRoles();
+    } else if (answer.intro === "Add an employee") {
+        addNewEmployee();
+    } else if (answer.intro === "Add a department") {
+        addNewDepartment();
+    } else if (answer.intro === "Add an employee role") {
+        addNewEmployeeRole();
+    } else if (answer.intro === "Update employee role") {
+        updateEmployeeRole();
+    } else if (answer.intro === "Exit application") {
+        connection.end();
+        return;
+    }
+}
+
+
+
+
+
+// NEED the inquirer prompt to start the intro questions
